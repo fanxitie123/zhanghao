@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { login } from '../lib/auth'
-import { Lock, LogIn, Copy } from 'lucide-react'
-
-const TEST_ACCOUNT = 'test-account-1234'
+import { Lock, LogIn } from 'lucide-react'
 
 interface LoginProps {
   onLoginSuccess: () => void
@@ -31,13 +29,8 @@ export function Login({ onLoginSuccess, onGoToGenerator }: LoginProps) {
     if (success) {
       onLoginSuccess()
     } else {
-      setError('账号无效，请使用账号生成器生成账号')
+      setError('账号无效')
     }
-  }
-
-  const copyTestAccount = () => {
-    navigator.clipboard.writeText(TEST_ACCOUNT)
-    setUsername(TEST_ACCOUNT)
   }
 
   return (
@@ -49,24 +42,6 @@ export function Login({ onLoginSuccess, onGoToGenerator }: LoginProps) {
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">媒体工具集</h1>
           <p className="text-gray-600">请登录以使用所有功能</p>
-        </div>
-
-        {/* 测试账号提示 */}
-        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-800 mb-2 font-medium">🆓 测试账号（快速体验）</p>
-          <div className="flex items-center gap-2">
-            <code className="flex-1 bg-white px-3 py-2 rounded border text-sm font-mono">
-              {TEST_ACCOUNT}
-            </code>
-            <button
-              type="button"
-              onClick={copyTestAccount}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-1 text-sm"
-            >
-              <Copy className="w-4 h-4" />
-              复制
-            </button>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -103,16 +78,6 @@ export function Login({ onLoginSuccess, onGoToGenerator }: LoginProps) {
             )}
           </button>
         </form>
-
-        <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-          <p className="text-gray-600 mb-4">还没有账号？</p>
-          <button
-            onClick={onGoToGenerator}
-            className="w-full bg-gray-100 text-gray-800 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-all"
-          >
-            去账号生成器
-          </button>
-        </div>
       </div>
     </div>
   )
