@@ -563,23 +563,7 @@ export default function DocumentToImage() {
   const processWord = async (file: File): Promise<DocumentImage[]> => {
     const arrayBuffer = await file.arrayBuffer();
     const result = await mammoth.convertToHtml({ 
-      arrayBuffer,
-      includeDefaultStyleMap: true,
-      styleMap: [
-        "p[style-name='Heading 1'] => h1:fresh",
-        "p[style-name='Heading 2'] => h2:fresh",
-        "p[style-name='Heading 3'] => h3:fresh",
-        "p[style-name='Heading 4'] => h4:fresh",
-        "p[style-name='Heading 5'] => h5:fresh",
-        "p[style-name='Heading 6'] => h6:fresh",
-        "p[style-name='Title'] => h1:fresh",
-        "p[style-name='Subtitle'] => p.subtitle:fresh",
-        "p[style-name='Normal'] => p:fresh",
-        "p[style-name='List Paragraph'] => p:fresh",
-        "r[style-name='Emphasis'] => em",
-        "r[style-name='Strong'] => strong",
-        "r:fresh"
-      ]
+      arrayBuffer
     });
     
     // 创建主容器
