@@ -46,10 +46,16 @@ export default function App() {
   const [authenticated, setAuthenticated] = useState(false)
 
   useEffect(() => {
-    setAuthenticated(isLoggedIn())
+    const checkAuth = () => {
+      const isAuth = isLoggedIn()
+      console.log('[App] 检查登录状态:', isAuth)
+      setAuthenticated(isAuth)
+    }
+    checkAuth()
   }, [])
 
   const handleLoginSuccess = () => {
+    console.log('[App] 登录成功回调执行')
     setAuthenticated(true)
     setView('tools')
   }
@@ -63,9 +69,11 @@ export default function App() {
   }
 
   if (authenticated || isLoggedIn()) {
+    console.log('[App] 渲染工具页面')
     return <ToolsWithLogout />
   }
 
+  console.log('[App] 渲染', view, '页面')
   return (
     <>
       {view === 'login' && (
