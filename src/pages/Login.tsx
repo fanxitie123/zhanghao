@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { login } from '../lib/auth'
-import { Lock, LogIn } from 'lucide-react'
+import { Lock, LogIn, Copy } from 'lucide-react'
+
+const TEST_ACCOUNT = 'test-account-1234'
 
 interface LoginProps {
   onLoginSuccess: () => void
@@ -33,6 +35,11 @@ export function Login({ onLoginSuccess, onGoToGenerator }: LoginProps) {
     }
   }
 
+  const copyTestAccount = () => {
+    navigator.clipboard.writeText(TEST_ACCOUNT)
+    setUsername(TEST_ACCOUNT)
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
@@ -42,6 +49,24 @@ export function Login({ onLoginSuccess, onGoToGenerator }: LoginProps) {
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">媒体工具集</h1>
           <p className="text-gray-600">请登录以使用所有功能</p>
+        </div>
+
+        {/* 测试账号提示 */}
+        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-blue-800 mb-2 font-medium">🆓 测试账号（快速体验）</p>
+          <div className="flex items-center gap-2">
+            <code className="flex-1 bg-white px-3 py-2 rounded border text-sm font-mono">
+              {TEST_ACCOUNT}
+            </code>
+            <button
+              type="button"
+              onClick={copyTestAccount}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-1 text-sm"
+            >
+              <Copy className="w-4 h-4" />
+              复制
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
