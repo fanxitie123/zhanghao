@@ -6,6 +6,7 @@ import Login from "@/pages/Login";
 import PartyBuildingScreen from "@/pages/PartyBuildingScreen";
 import MyActivities from "@/pages/MyActivities";
 import MediaTools from "@/pages/MediaTools";
+import SimpleTools from "@/pages/SimpleTools";
 import TestExcelGenerator from "@/pages/TestExcelGenerator";
 import { AdminLayout } from "@/components/AdminLayout";
 import ChatData from "@/pages/admin/ChatData";
@@ -32,8 +33,10 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SimpleTools />} />
+        <Route path="/tools" element={<SimpleTools />} />
         <Route path="/media-tools" element={<MediaTools />} />
+        <Route path="/chat" element={<Home />} />
         <Route path="/test-excel" element={<TestExcelGenerator />} />
         <Route path="/knowledge" element={<KnowledgeBase />} />
         <Route path="/profile" element={<Profile />} />
